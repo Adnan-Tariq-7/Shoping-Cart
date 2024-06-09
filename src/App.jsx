@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { About, Cart, Contact, Header, Hero, Product } from "./sections";
+import { About, Cart, Contact, Footer, Header, Hero, Product } from "./sections";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "./components";
 
@@ -40,6 +40,7 @@ const App = () => {
 
             <Route path="/cart" element={<Cart />} />
           </Routes>
+          <Footer/>
         </div>
       </BrowserRouter>
     </>
