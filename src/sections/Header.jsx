@@ -9,13 +9,22 @@ import { LuDelete } from "react-icons/lu";
 import { Button } from "../components";
 import { Link } from "react-router-dom";
 
-const Header = ({ setTheme, theme }) => {
+const Header = ({ setTheme, theme,hideNav }) => {
   const {
     state: { cart },
     dispatch,
   } = CartState();
   const [isOpen, setIsOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+
+  const handleMenu=()=>{
+    setIsOpen(prev=>!prev)
+    setOpenCart(false)
+  }
+  const handleCart=()=>{
+    setOpenCart(prev=>!prev)
+    setIsOpen(false)
+  }
 
   return (
     <section id="header" className="sticky top-0 left-0 right-0 z-50">
@@ -34,13 +43,13 @@ const Header = ({ setTheme, theme }) => {
           </ul>
         </nav>
         <div className="addToCart flex gap-3 text-slate-gray dark:text-dark-slate-gray">
+        {!hideNav && 
           <div
             className="md:hidden relative "
-            onClick={() => setIsOpen((prev) => !prev)}
+            onClick={handleMenu}
           >
             <RiMenu3Line size={30} />
-
-            <nav
+              <nav
               className={`absolute top-full left-0 w-36 overflow-hidden transition-all duration-1000 transform ${
                 isOpen ? "opacity-100 max-h-screen" : " max-h-0 opacity-0"
               } -translate-x-1/2 border bg-white`}
@@ -56,7 +65,8 @@ const Header = ({ setTheme, theme }) => {
                 ))}
               </ul>
             </nav>
-          </div>
+          
+          </div>}
           {theme == "light" ? (
             <CiLight
               size={30}
@@ -71,7 +81,7 @@ const Header = ({ setTheme, theme }) => {
 
           <div
             className="relative"
-            onClick={() => setOpenCart((prev) => !prev)}
+            onClick={handleCart}
           >
             <FaCartPlus size={30} />
             <p className="absolute -top-3 -right-3 text-xs w-5 h-5 bg-primary text-white flex justify-center items-center rounded-full">

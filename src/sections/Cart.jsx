@@ -21,6 +21,7 @@ const Cart = () => {
               onClick={() =>
                 dispatch({ type: "REMOVE_FROM_CART", payload: val })
               }
+              className="dark:text-dark-slate-gray"
             >
               <MdDelete size={30} />
             </div>
@@ -37,7 +38,7 @@ const Cart = () => {
               >
                 +
               </button>
-              <p className="w-5 h-5 text-center">{val.qty}</p>
+              <p className="w-5 h-5 text-center dark:text-dark-slate-gray">{val.qty}</p>
               <button
                 className="w-6 h-6 bg-primary text-2xl text-white rounded-full flex justify-center items-center"
                 onClick={() =>
